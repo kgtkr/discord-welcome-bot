@@ -28,9 +28,9 @@ client.on("messageReactionAdd", async (messageReaction, user) => {
       messageReaction.message.author.id === client.user?.id &&
       messageReaction.message.content.includes(`<@${user.id}>`)
     ) {
-      const member = (
-        await messageReaction.message.guild?.members.fetch()
-      )?.find((member) => member.user.id === user.id);
+      const member = await messageReaction.message.guild?.members.fetch(
+        user.id
+      );
       if (member !== undefined) {
         let newMember = false;
         for (const role of config.roles) {
